@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NWE.DoacaoSangue.Domain.Entities;
-using System.Reflection.Metadata;
 
 namespace NWE.DoacaoSangue.Infra.Configurations;
 
@@ -44,6 +43,6 @@ public class DoadorConfiguration : IEntityTypeConfiguration<Doador>
         builder
             .HasOne(d => d.Endereco)
             .WithOne(e => e.Doador)
-            .HasForeignKey<Endereco>(e => e.Id);
+            .HasForeignKey<Doador>(d => d.Id);
     }
 }

@@ -6,16 +6,16 @@ namespace NWE.DoacaoSangue.Infra.Repositories;
 
 public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
 {
-    private AbstractCrud<Doacao> Crud { get; } = new(unitOfWork);
+    private GenericRepository<Doacao> Repository { get; } = new(unitOfWork);
 
-    public async Task<List<Doacao>> GetAllAsync() => await Crud.GetAllAsync();
+    public async Task<List<Doacao>> GetAllAsync() => await Repository.GetAllAsync();
 
-    public async Task<Doacao> GetByIdAsync(Guid id) => await Crud.GetByIdAsync(id);
+    public async Task<Doacao> GetByIdAsync(Guid id) => await Repository.GetByIdAsync(id);
 
     public async Task<Doacao> CreateAsync(Doacao doacao)
     {
-        await Crud.CreateAsync(doacao);
-        await Crud.UnitOfWork.CommitAsync();
+        await Repository.CreateAsync(doacao);
+        await Repository.UnitOfWork.CommitAsync();
 
         return doacao;
     }
@@ -24,8 +24,8 @@ public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
     {
         if (id == doacao.Id)
         {
-            Crud.Update(doacao);
-            await Crud.UnitOfWork.CommitAsync();
+            Repository.Update(doacao);
+            await Repository.UnitOfWork.CommitAsync();
         }
 
         return doacao;
@@ -33,10 +33,10 @@ public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
 
     public async Task<bool> RemoveAsync(Guid id, Doacao doacao)
     {
-        if (id != doacao.Id) 
+        if (id != doacao.Id)
             return false;
 
-        Crud.Remove(doacao);
-        return await Crud.UnitOfWork.CommitAsync() > 0;
+        Repository.Remove(doacao);
+        return await Repository.UnitOfWork.CommitAsync() > 0;
     }
 }

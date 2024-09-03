@@ -7,7 +7,7 @@ public class Doador : Entity
 {
     protected Doador() { }
 
-    public Doador(string nomeCompleto, string email, DateOnly dataNascimento, char genero, double peso, ETipoSanguineo tipoSanguineo, EFatorRh fatorRh)
+    public Doador(string nomeCompleto, string email, DateOnly dataNascimento, char genero, double peso, ETipoSanguineo tipoSanguineo, EFatorRh fatorRh, Endereco? endereco)
     {
         NomeCompleto = nomeCompleto;
         Email = email;
@@ -16,6 +16,7 @@ public class Doador : Entity
         Peso = peso;
         TipoSanguineo = tipoSanguineo;
         FatorRh = fatorRh;
+        Endereco = endereco;
     }
 
     public string NomeCompleto { get; } = string.Empty;
@@ -25,7 +26,7 @@ public class Doador : Entity
     public double Peso { get; }
     public ETipoSanguineo TipoSanguineo { get; }
     public EFatorRh FatorRh { get; }
-    public List<Doacao>? Doacoes { get; }
     public Guid? EnderecoId { get; }
     public Endereco? Endereco { get; }
+    public List<Doacao>? Doacoes { get; }
 }

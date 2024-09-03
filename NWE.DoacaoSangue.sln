@@ -9,19 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{3A52EC7B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FD3675C7-44FC-476B-8DB0-ECEE87842A4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWE.DoacaoSangue.Core", "src\NWE.DoacaoSangue.Core\NWE.DoacaoSangue.Core.csproj", "{CC7341DC-9EE6-4282-B33C-9658D72E97CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWE.DoacaoSangue.Shared", "src\NWE.DoacaoSangue.Shared\NWE.DoacaoSangue.Shared.csproj", "{CC7341DC-9EE6-4282-B33C-9658D72E97CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWE.DoacaoSangue.Domain", "src\NWE.DoacaoSangue.Domain\NWE.DoacaoSangue.Domain.csproj", "{7123D0B6-637E-4327-B92D-588E15F2D067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWE.DoacaoSangue.Domain", "src\NWE.DoacaoSangue.Domain\NWE.DoacaoSangue.Domain.csproj", "{7123D0B6-637E-4327-B92D-588E15F2D067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWE.DoacaoSangue.Infra", "src\NWE.DoacaoSangue.Infra\NWE.DoacaoSangue.Infra.csproj", "{B10E8007-79C5-442E-8AE3-73A3E5FE4575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWE.DoacaoSangue.Infra", "src\NWE.DoacaoSangue.Infra\NWE.DoacaoSangue.Infra.csproj", "{B10E8007-79C5-442E-8AE3-73A3E5FE4575}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWE.DoacaoSangue.CrossCutting", "src\NWE.DoacaoSangue.CrossCutting\NWE.DoacaoSangue.CrossCutting.csproj", "{DAF158F7-C291-4559-8A5B-FACD8B2B51B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWE.DoacaoSangue.CrossCutting", "src\NWE.DoacaoSangue.CrossCutting\NWE.DoacaoSangue.CrossCutting.csproj", "{DAF158F7-C291-4559-8A5B-FACD8B2B51B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWE.DoacaoSangue.Application", "src\NWE.DoacaoSangue.Application\NWE.DoacaoSangue.Application.csproj", "{AE63C3F0-8599-4D19-BB66-F743AD701C28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWE.DoacaoSangue.Application", "src\NWE.DoacaoSangue.Application\NWE.DoacaoSangue.Application.csproj", "{AE63C3F0-8599-4D19-BB66-F743AD701C28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWE.DoacaoSangue.API", "src\NWE.DoacaoSangue.API\NWE.DoacaoSangue.API.csproj", "{E64745BD-22B2-4A30-8F06-5E15B774CC53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWE.DoacaoSangue.Application.Test", "test\NWE.DoacaoSangue.Application.Test\NWE.DoacaoSangue.Application.Test.csproj", "{B6B4A868-E0BA-41B0-B68F-79D78E4EEEC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWE.DoacaoSangue.API", "src\NWE.DoacaoSangue.API\NWE.DoacaoSangue.API.csproj", "{E64745BD-22B2-4A30-8F06-5E15B774CC53}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F2011DDF-6089-4000-8817-4536AE8AB1AA}"
 EndProject
@@ -55,10 +53,6 @@ Global
 		{E64745BD-22B2-4A30-8F06-5E15B774CC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E64745BD-22B2-4A30-8F06-5E15B774CC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E64745BD-22B2-4A30-8F06-5E15B774CC53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B6B4A868-E0BA-41B0-B68F-79D78E4EEEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6B4A868-E0BA-41B0-B68F-79D78E4EEEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6B4A868-E0BA-41B0-B68F-79D78E4EEEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6B4A868-E0BA-41B0-B68F-79D78E4EEEC1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F2011DDF-6089-4000-8817-4536AE8AB1AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F2011DDF-6089-4000-8817-4536AE8AB1AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2011DDF-6089-4000-8817-4536AE8AB1AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -74,7 +68,6 @@ Global
 		{DAF158F7-C291-4559-8A5B-FACD8B2B51B7} = {53069F35-FE42-4C9A-B28E-F6003D77636E}
 		{AE63C3F0-8599-4D19-BB66-F743AD701C28} = {53069F35-FE42-4C9A-B28E-F6003D77636E}
 		{E64745BD-22B2-4A30-8F06-5E15B774CC53} = {53069F35-FE42-4C9A-B28E-F6003D77636E}
-		{B6B4A868-E0BA-41B0-B68F-79D78E4EEEC1} = {FD3675C7-44FC-476B-8DB0-ECEE87842A4D}
 		{F2011DDF-6089-4000-8817-4536AE8AB1AA} = {3A52EC7B-E6AA-4440-964C-3165159C1456}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

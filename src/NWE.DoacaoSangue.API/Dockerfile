@@ -15,7 +15,7 @@ COPY ["NWE.DoacaoSangue.API/NWE.DoacaoSangue.API.csproj", "NWE.DoacaoSangue.API/
 COPY ["NWE.DoacaoSangue.CrossCutting/NWE.DoacaoSangue.CrossCutting.csproj", "NWE.DoacaoSangue.CrossCutting/"]
 COPY ["NWE.DoacaoSangue.Application/NWE.DoacaoSangue.Application.csproj", "NWE.DoacaoSangue.Application/"]
 COPY ["NWE.DoacaoSangue.Domain/NWE.DoacaoSangue.Domain.csproj", "NWE.DoacaoSangue.Domain/"]
-COPY ["NWE.DoacaoSangue.Core/NWE.DoacaoSangue.Core.csproj", "NWE.DoacaoSangue.Core/"]
+COPY ["NWE.DoacaoSangue.Shared/NWE.DoacaoSangue.Shared.csproj", "NWE.DoacaoSangue.Shared/"]
 COPY ["NWE.DoacaoSangue.Infra/NWE.DoacaoSangue.Infra.csproj", "NWE.DoacaoSangue.Infra/"]
 RUN dotnet restore "./NWE.DoacaoSangue.API/NWE.DoacaoSangue.API.csproj"
 COPY . .

@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NWE.DoacaoSangue.Core.Entities;
+using NWE.DoacaoSangue.Infra.Data;
 
-namespace NWE.DoacaoSangue.Infra.Data;
+namespace NWE.DoacaoSangue.Infra.Repositories;
 
-public class AbstractCrud<T>(IUnitOfWork unitOfWork) where T : Entity
+public sealed class GenericRepository<T>(IUnitOfWork unitOfWork) where T : Entity
 {
     public IUnitOfWork UnitOfWork { get; } = unitOfWork;
 

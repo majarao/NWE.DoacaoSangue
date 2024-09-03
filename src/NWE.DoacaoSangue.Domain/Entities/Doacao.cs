@@ -14,7 +14,7 @@ public class Doacao : Entity
     }
 
     public Guid DoadorId { get; }
+    public Doador? Doador { get; }
     public DateTime DataDoacao { get; }
     public int QuantidadeML { get; }
-    public Doador? Doador { get; }
 }
