@@ -22,6 +22,9 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<IDoacaoRepository, DoacaoRepository>();
+        services.AddScoped<IDoadorRepository, DoadorRepository>();
+        services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+        services.AddScoped<IEstoqueSangueRepository, EstoqueSangueRepository>();
 
         return services;
     }

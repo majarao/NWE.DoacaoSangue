@@ -14,7 +14,7 @@ public class EnderecoConfiguration : IEntityTypeConfiguration<Endereco>
 
         builder.Property(e => e.CEP)
             .IsRequired()
-            .HasMaxLength(9);
+            .HasMaxLength(8);
 
         builder.Property(e => e.DoadorId)
             .IsRequired();

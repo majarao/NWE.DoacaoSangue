@@ -8,9 +8,9 @@ public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
 {
     private GenericRepository<Doacao> Repository { get; } = new(unitOfWork);
 
-    public async Task<List<Doacao>> GetAllAsync() => await Repository.GetAllAsync();
+    public async Task<List<Doacao>?> GetAllAsync() => await Repository.GetAllAsync();
 
-    public async Task<Doacao> GetByIdAsync(Guid id) => await Repository.GetByIdAsync(id);
+    public async Task<Doacao?> GetByIdAsync(Guid id) => await Repository.GetByIdAsync(id);
 
     public async Task<Doacao> CreateAsync(Doacao doacao)
     {
@@ -31,9 +31,11 @@ public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
         return doacao;
     }
 
-    public async Task<bool> RemoveAsync(Guid id, Doacao doacao)
+    public async Task<bool> RemoveAsync(Guid id)
     {
-        if (id != doacao.Id)
+        Doacao? doacao = await Repository.GetByIdAsync(id);
+
+        if (doacao == null)
             return false;
 
         Repository.Remove(doacao);

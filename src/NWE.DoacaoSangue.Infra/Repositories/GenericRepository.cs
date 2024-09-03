@@ -8,9 +8,9 @@ public sealed class GenericRepository<T>(IUnitOfWork unitOfWork) where T : Entit
 {
     public IUnitOfWork UnitOfWork { get; } = unitOfWork;
 
-    public async Task<List<T>> GetAllAsync() => await UnitOfWork.Context.Set<T>().ToListAsync();
+    public async Task<List<T>?> GetAllAsync() => await UnitOfWork.Context.Set<T>().ToListAsync();
 
-    public async Task<T> GetByIdAsync(Guid id) => await UnitOfWork.Context.Set<T>().SingleAsync(x => x.Id == id);
+    public async Task<T?> GetByIdAsync(Guid id) => await UnitOfWork.Context.Set<T>().SingleOrDefaultAsync(x => x.Id == id);
 
     public async Task<T> CreateAsync(T data)
     {
