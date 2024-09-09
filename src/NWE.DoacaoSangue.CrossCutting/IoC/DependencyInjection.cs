@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NWE.DoacaoSangue.Domain.Repositories;
 using NWE.DoacaoSangue.Infra.Data;
+using NWE.DoacaoSangue.Infra.Integrations.ViaCEP;
 using NWE.DoacaoSangue.Infra.Repositories;
 
 namespace NWE.DoacaoSangue.CrossCutting.IoC;
@@ -25,6 +26,13 @@ public static class DependencyInjection
         services.AddScoped<IDoadorRepository, DoadorRepository>();
         services.AddScoped<IEnderecoRepository, EnderecoRepository>();
         services.AddScoped<IEstoqueSangueRepository, EstoqueSangueRepository>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddIntegrations(this IServiceCollection services)
+    {
+        services.AddScoped<IViaCEPService, ViaCEPService>();
 
         return services;
     }

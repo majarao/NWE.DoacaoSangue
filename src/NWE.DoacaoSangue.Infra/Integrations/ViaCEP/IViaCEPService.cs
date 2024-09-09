@@ -2,5 +2,6 @@
 
 public interface IViaCEPService
 {
-    public ViaCEPModel RecuperarEnderecoPeloCEP(string CEP);
+    public Task<ViaCEPModel> RecuperarEnderecoPeloCEPAsync(string cep);
+    public void ValidarCEP(string cep);
 }
