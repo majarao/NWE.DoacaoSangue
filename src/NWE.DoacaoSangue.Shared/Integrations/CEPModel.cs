@@ -1,6 +1,6 @@
-﻿namespace NWE.DoacaoSangue.Infra.Integrations.ViaCEP;
+﻿namespace NWE.DoacaoSangue.Shared.Integrations;
 
-public class ViaCEPModel
+public class CEPModel
 {
     public string? CEP { get; set; }
     public string? Logradouro { get; set; }

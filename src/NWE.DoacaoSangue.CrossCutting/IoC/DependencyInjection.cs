@@ -3,8 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NWE.DoacaoSangue.Domain.Repositories;
 using NWE.DoacaoSangue.Infra.Data;
-using NWE.DoacaoSangue.Infra.Integrations.ViaCEP;
+using NWE.DoacaoSangue.Infra.Integrations;
 using NWE.DoacaoSangue.Infra.Repositories;
+using NWE.DoacaoSangue.Shared.Integrations;
 
 namespace NWE.DoacaoSangue.CrossCutting.IoC;
 
@@ -32,7 +33,7 @@ public static class DependencyInjection
 
     public static IServiceCollection AddIntegrations(this IServiceCollection services)
     {
-        services.AddScoped<IViaCEPService, ViaCEPService>();
+        services.AddScoped<ICEPService, ViaCEPService>();
 
         return services;
     }

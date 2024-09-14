@@ -1,5 +1,5 @@
-﻿using NWE.DoacaoSangue.Core.Entities;
-using NWE.DoacaoSangue.Domain.Enums;
+﻿using NWE.DoacaoSangue.Domain.Enums;
+using NWE.DoacaoSangue.Shared.Entities;
 
 namespace NWE.DoacaoSangue.Domain.Entities;
 

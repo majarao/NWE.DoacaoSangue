@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWE.DoacaoSangue.API", "src
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F2011DDF-6089-4000-8817-4536AE8AB1AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWE.DoacaoSangue.Domain.Tests", "test\NWE.DoacaoSangue.Domain.Tests\NWE.DoacaoSangue.Domain.Tests.csproj", "{84981D21-BA25-46A0-AE88-CA5568AEC115}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{F2011DDF-6089-4000-8817-4536AE8AB1AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2011DDF-6089-4000-8817-4536AE8AB1AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2011DDF-6089-4000-8817-4536AE8AB1AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84981D21-BA25-46A0-AE88-CA5568AEC115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84981D21-BA25-46A0-AE88-CA5568AEC115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84981D21-BA25-46A0-AE88-CA5568AEC115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84981D21-BA25-46A0-AE88-CA5568AEC115}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{AE63C3F0-8599-4D19-BB66-F743AD701C28} = {53069F35-FE42-4C9A-B28E-F6003D77636E}
 		{E64745BD-22B2-4A30-8F06-5E15B774CC53} = {53069F35-FE42-4C9A-B28E-F6003D77636E}
 		{F2011DDF-6089-4000-8817-4536AE8AB1AA} = {3A52EC7B-E6AA-4440-964C-3165159C1456}
+		{84981D21-BA25-46A0-AE88-CA5568AEC115} = {FD3675C7-44FC-476B-8DB0-ECEE87842A4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80B36EE3-BE0E-477F-8E0D-3856DEE28D83}

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NWE.DoacaoSangue.Core.Entities;
 using NWE.DoacaoSangue.Infra.Data;
+using NWE.DoacaoSangue.Shared.Entities;
 
 namespace NWE.DoacaoSangue.Infra.Repositories;
 

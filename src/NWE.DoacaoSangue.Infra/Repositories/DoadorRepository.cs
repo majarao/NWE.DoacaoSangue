@@ -1,4 +1,5 @@
-﻿using NWE.DoacaoSangue.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using NWE.DoacaoSangue.Domain.Entities;
 using NWE.DoacaoSangue.Domain.Repositories;
 using NWE.DoacaoSangue.Infra.Data;
 
@@ -11,6 +12,16 @@ public class DoadorRepository(IUnitOfWork unitOfWork) : IDoadorRepository
     public async Task<List<Doador>?> GetAllAsync() => await Repository.GetAllAsync();
 
     public async Task<Doador?> GetByIdAsync(Guid id) => await Repository.GetByIdAsync(id);
+
+    public async Task<Guid> GetByEmailAsync(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            return Guid.Empty;
+
+        Doador? doador = await Repository.UnitOfWork.Context.Set<Doador>().FirstOrDefaultAsync(d => d.Email == email);
+
+        return doador is null ? Guid.Empty : doador.Id;
+    }
 
     public async Task<Doador> CreateAsync(Doador doador)
     {

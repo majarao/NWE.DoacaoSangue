@@ -1,4 +1,6 @@
-﻿using NWE.DoacaoSangue.Core.Entities;
+﻿using NWE.DoacaoSangue.Domain.Exceptions;
+using NWE.DoacaoSangue.Shared.Entities;
+using NWE.DoacaoSangue.Shared.Integrations;
 
 namespace NWE.DoacaoSangue.Domain.Entities;
 
@@ -6,13 +8,17 @@ public class Endereco : Entity
 {
     protected Endereco() { }
 
-    public Endereco(Guid doadorId, string cep, string logradouro, string cidade, string estado)
+    public Endereco(ICEPService cepService, string cep)
     {
-        DoadorId = doadorId;
+        Task<CEPModel?> model = cepService.RecuperarEnderecoPeloCEPAsync(cep);
+
+        if (model.Result is null)
+            throw new DoadorCEPException();
+
         CEP = cep;
-        Logradouro = logradouro;
-        Cidade = cidade;
-        Estado = estado;
+        Logradouro = model.Result.Logradouro!;
+        Cidade = model.Result.Localidade!;
+        Estado = model.Result.Estado!;
     }
 
     public string CEP { get; } = string.Empty;

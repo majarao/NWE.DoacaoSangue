@@ -1,4 +1,5 @@
-﻿using NWE.DoacaoSangue.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using NWE.DoacaoSangue.Domain.Entities;
 using NWE.DoacaoSangue.Domain.Repositories;
 using NWE.DoacaoSangue.Infra.Data;
 
@@ -11,6 +12,11 @@ public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
     public async Task<List<Doacao>?> GetAllAsync() => await Repository.GetAllAsync();
 
     public async Task<Doacao?> GetByIdAsync(Guid id) => await Repository.GetByIdAsync(id);
+
+    public async Task<Doacao?> RecuperaUltimaDoacaoDoDoador(Guid doadorId) => 
+        await Repository.UnitOfWork.Context.Set<Doacao>()
+            .OrderBy(d => d.DataDoacao)
+            .LastOrDefaultAsync(d => d.DoadorId == doadorId);
 
     public async Task<Doacao> CreateAsync(Doacao doacao)
     {

@@ -1,4 +1,4 @@
-﻿namespace NWE.DoacaoSangue.Core.Entities;
+﻿namespace NWE.DoacaoSangue.Shared.Entities;
 
 public class Entity
 {
