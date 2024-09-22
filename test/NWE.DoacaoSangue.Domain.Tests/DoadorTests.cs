@@ -25,7 +25,7 @@ public class DoadorTests
             EGenero.MASCULINO,
             95,
             ETipoSanguineo.A,
-            EFatorRh.POSITIVO,
+            EFatorRH.POSITIVO,
             null);
 
         //Assert
@@ -59,7 +59,7 @@ public class DoadorTests
             EGenero.MASCULINO,
             95,
             ETipoSanguineo.A,
-            EFatorRh.POSITIVO,
+            EFatorRH.POSITIVO,
             endereco);
 
         //Assert
@@ -80,6 +80,20 @@ public class DoadorTests
         });
     }
 
+    [Fact(DisplayName = "Falha Endereco Nao Encontrado")]
+    [Trait("Doador", "Novo Doador")]
+    public void Doador_NovoDoadorComEndereco_FalhaCEPNaoEncontrado()
+    {
+        //Arrange
+        Mock<ICEPService> cepService = new();
+
+        //Act Assert
+        Assert.Throws<DoadorCEPException>(() =>
+        {
+            Endereco endereco = new(cepService.Object, "14810-790");
+        });
+    }
+
     [Fact(DisplayName = "Falha Email Utilizado")]
     [Trait("Doador", "Novo Doador")]
     public void Doador_NovoDoador_FalhaEmailUtilizado()
@@ -95,7 +109,7 @@ public class DoadorTests
             EGenero.MASCULINO,
             95,
             ETipoSanguineo.A,
-            EFatorRh.POSITIVO,
+            EFatorRH.POSITIVO,
             null);
 
         repository.Setup(s => s.GetByEmailAsync("majarao2@outlook.com").Result).Returns(doadorEmail.Id);
@@ -111,7 +125,7 @@ public class DoadorTests
                 EGenero.MASCULINO,
                 95,
                 ETipoSanguineo.A,
-                EFatorRh.POSITIVO,
+                EFatorRH.POSITIVO,
                 null);
         });
     }
@@ -134,7 +148,7 @@ public class DoadorTests
                 EGenero.MASCULINO,
                 45,
                 ETipoSanguineo.A,
-                EFatorRh.POSITIVO,
+                EFatorRH.POSITIVO,
                 null);
         });
     }
@@ -157,7 +171,7 @@ public class DoadorTests
                 EGenero.MASCULINO,
                 70,
                 ETipoSanguineo.A,
-                EFatorRh.POSITIVO,
+                EFatorRH.POSITIVO,
                 null);
         });
     }

@@ -13,7 +13,7 @@ public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
 
     public async Task<Doacao?> GetByIdAsync(Guid id) => await Repository.GetByIdAsync(id);
 
-    public async Task<Doacao?> RecuperaUltimaDoacaoDoDoador(Guid doadorId) => 
+    public async Task<Doacao?> RecuperaUltimaDoacaoDoDoador(Guid doadorId) =>
         await Repository.UnitOfWork.Context.Set<Doacao>()
             .OrderBy(d => d.DataDoacao)
             .LastOrDefaultAsync(d => d.DoadorId == doadorId);

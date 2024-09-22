@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NWE.DoacaoSangue.Domain.Repositories;
@@ -6,6 +8,7 @@ using NWE.DoacaoSangue.Infra.Data;
 using NWE.DoacaoSangue.Infra.Integrations;
 using NWE.DoacaoSangue.Infra.Repositories;
 using NWE.DoacaoSangue.Shared.Integrations;
+using System.Reflection;
 
 namespace NWE.DoacaoSangue.CrossCutting.IoC;
 
@@ -25,8 +28,20 @@ public static class DependencyInjection
 
         services.AddScoped<IDoacaoRepository, DoacaoRepository>();
         services.AddScoped<IDoadorRepository, DoadorRepository>();
-        services.AddScoped<IEnderecoRepository, EnderecoRepository>();
         services.AddScoped<IEstoqueSangueRepository, EstoqueSangueRepository>();
+
+        return services;
+    }
+
+    public static IServiceCollection AppAplication(this IServiceCollection services)
+    {
+        Assembly assemblies = Assembly.Load("NWE.DoacaoSangue.Application");
+
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assemblies));
+
+        services
+            .AddFluentValidationAutoValidation()
+            .AddValidatorsFromAssembly(assemblies);
 
         return services;
     }

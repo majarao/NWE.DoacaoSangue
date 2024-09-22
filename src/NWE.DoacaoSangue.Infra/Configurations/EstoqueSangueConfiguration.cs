@@ -15,7 +15,7 @@ public class EstoqueSangueConfiguration : IEntityTypeConfiguration<EstoqueSangue
         builder.Property(e => e.TipoSanguineo)
             .IsRequired();
 
-        builder.Property(e => e.FatorRh)
+        builder.Property(e => e.FatorRH)
             .IsRequired();
 
         builder.Property(e => e.QuantidadeML)

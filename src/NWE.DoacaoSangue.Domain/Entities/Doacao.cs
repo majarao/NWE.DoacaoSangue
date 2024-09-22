@@ -12,11 +12,11 @@ public class Doacao : Entity
     public Doacao(
         IDoadorRepository doadorRepository,
         IDoacaoRepository doacaoRepository,
-        Guid doadorId, 
-        DateTime dataDoacao, 
+        Guid doadorId,
+        DateTime dataDoacao,
         int quantidadeML)
     {
-        Doador? doador = doadorRepository.GetByIdAsync(doadorId).Result ?? 
+        Doador? doador = doadorRepository.GetByIdAsync(doadorId).Result ??
             throw new DoacaoDoadorNaoEncontradoException();
 
         if (DateTime.Now.Year - doador.DataNascimento.Year < 18)
@@ -51,8 +51,8 @@ public class Doacao : Entity
         QuantidadeML = quantidadeML;
     }
 
-    public Guid DoadorId { get; }
-    public Doador? Doador { get; }
-    public DateTime DataDoacao { get; }
-    public int QuantidadeML { get; }
+    public Guid DoadorId { get; private set; }
+    public Doador? Doador { get; private set; }
+    public DateTime DataDoacao { get; private set; }
+    public int QuantidadeML { get; private set; }
 }

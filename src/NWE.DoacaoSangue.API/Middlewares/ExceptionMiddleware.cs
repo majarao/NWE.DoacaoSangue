@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 
-namespace NWE.DoacaoSangue.API.Extensions;
+namespace NWE.DoacaoSangue.API.Middlewares;
 
-public static class ApiExceptionFilter
+public static class ExceptionMiddleware
 {
-    public static void UseExceptionFilter(this IApplicationBuilder app)
+    public static void UseExceptionMiddleware(this IApplicationBuilder app)
     {
         app.UseExceptionHandler(appError =>
         {

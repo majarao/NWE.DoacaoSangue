@@ -14,7 +14,7 @@ public class EnderecoConfiguration : IEntityTypeConfiguration<Endereco>
 
         builder.Property(e => e.CEP)
             .IsRequired()
-            .HasMaxLength(8);
+            .HasMaxLength(9);
 
         builder.Property(e => e.DoadorId)
             .IsRequired();
@@ -34,6 +34,6 @@ public class EnderecoConfiguration : IEntityTypeConfiguration<Endereco>
         builder
             .HasOne(e => e.Doador)
             .WithOne(d => d.Endereco)
-            .HasForeignKey<Endereco>(e => e.Id);
+            .HasForeignKey<Endereco>(e => e.DoadorId);
     }
 }

@@ -18,4 +18,6 @@ public class DoadorPrecisaTer16AnosException : Exception
 public class DoadorCEPException : Exception
 {
     public DoadorCEPException() : base("CEP inválido ou não existe") { }
+
+    public DoadorCEPException(string message) : base(message) { }
 }

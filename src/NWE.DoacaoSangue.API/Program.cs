@@ -1,4 +1,4 @@
-using NWE.DoacaoSangue.API.Extensions;
+using NWE.DoacaoSangue.API.Middlewares;
 using NWE.DoacaoSangue.CrossCutting.IoC;
 using System.Text.Json.Serialization;
 
@@ -12,9 +12,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 
+
 builder.Services
     .AddContext(builder.Configuration)
     .AddInfra()
+    .AppAplication()
     .AddIntegrations();
 
 WebApplication app = builder.Build();
@@ -28,6 +30,6 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 app.MapControllers();
 
-app.UseExceptionFilter();
+app.UseExceptionMiddleware();
 
 app.Run();

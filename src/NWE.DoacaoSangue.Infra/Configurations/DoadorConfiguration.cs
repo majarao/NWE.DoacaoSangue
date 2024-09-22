@@ -32,17 +32,12 @@ public class DoadorConfiguration : IEntityTypeConfiguration<Doador>
         builder.Property(d => d.TipoSanguineo)
             .IsRequired();
 
-        builder.Property(d => d.FatorRh)
+        builder.Property(d => d.FatorRH)
             .IsRequired();
 
         builder
             .HasMany(d => d.Doacoes)
             .WithOne(x => x.Doador)
             .HasForeignKey(d => d.DoadorId);
-
-        builder
-            .HasOne(d => d.Endereco)
-            .WithOne(e => e.Doador)
-            .HasForeignKey<Doador>(d => d.Id);
     }
 }

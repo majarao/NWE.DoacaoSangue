@@ -15,16 +15,19 @@ public class Endereco : Entity
         if (model.Result is null)
             throw new DoadorCEPException();
 
+        if (model.Result.Logradouro is null)
+            throw new DoadorCEPException("CEP não encontrado");
+
         CEP = cep;
-        Logradouro = model.Result.Logradouro!;
+        Logradouro = model.Result.Logradouro;
         Cidade = model.Result.Localidade!;
-        Estado = model.Result.Estado!;
+        Estado = model.Result.UF!;
     }
 
-    public string CEP { get; } = string.Empty;
-    public string Logradouro { get; } = string.Empty;
-    public string Cidade { get; } = string.Empty;
-    public string Estado { get; } = string.Empty;
-    public Guid DoadorId { get; }
-    public Doador Doador { get; } = null!;
+    public string CEP { get; private set; } = string.Empty;
+    public string Logradouro { get; private set; } = string.Empty;
+    public string Cidade { get; private set; } = string.Empty;
+    public string Estado { get; private set; } = string.Empty;
+    public Guid DoadorId { get; private set; }
+    public Doador Doador { get; private set; } = null!;
 }

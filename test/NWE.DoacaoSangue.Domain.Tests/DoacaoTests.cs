@@ -3,7 +3,6 @@ using NWE.DoacaoSangue.Domain.Entities;
 using NWE.DoacaoSangue.Domain.Enums;
 using NWE.DoacaoSangue.Domain.Exceptions;
 using NWE.DoacaoSangue.Domain.Repositories;
-using NWE.DoacaoSangue.Shared.Integrations;
 
 namespace NWE.DoacaoSangue.Domain.Tests;
 
@@ -25,7 +24,7 @@ public class DoacaoTests
             EGenero.MASCULINO,
             95,
             ETipoSanguineo.A,
-            EFatorRh.POSITIVO,
+            EFatorRH.POSITIVO,
             null);
 
         repositoryDoador.Setup(s => s.GetByIdAsync(doador.Id).Result).Returns(doador);
@@ -78,7 +77,7 @@ public class DoacaoTests
             EGenero.MASCULINO,
             95,
             ETipoSanguineo.A,
-            EFatorRh.POSITIVO,
+            EFatorRH.POSITIVO,
             null);
 
         repositoryDoador.Setup(s => s.GetByIdAsync(doador.Id).Result).Returns(doador);
@@ -111,7 +110,7 @@ public class DoacaoTests
             EGenero.FEMININO,
             95,
             ETipoSanguineo.A,
-            EFatorRh.POSITIVO,
+            EFatorRH.POSITIVO,
             null);
 
         repositoryDoador.Setup(s => s.GetByIdAsync(doador.Id).Result).Returns(doador);
@@ -148,7 +147,7 @@ public class DoacaoTests
             EGenero.MASCULINO,
             95,
             ETipoSanguineo.A,
-            EFatorRh.POSITIVO,
+            EFatorRH.POSITIVO,
             null);
 
         repositoryDoador.Setup(s => s.GetByIdAsync(doador.Id).Result).Returns(doador);
@@ -185,7 +184,7 @@ public class DoacaoTests
             EGenero.MASCULINO,
             95,
             ETipoSanguineo.A,
-            EFatorRh.POSITIVO,
+            EFatorRH.POSITIVO,
             null);
 
         repositoryDoador.Setup(s => s.GetByIdAsync(doador.Id).Result).Returns(doador);

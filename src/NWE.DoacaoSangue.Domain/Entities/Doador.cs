@@ -7,8 +7,6 @@ namespace NWE.DoacaoSangue.Domain.Entities;
 
 public class Doador : Entity
 {
-    private IDoadorRepository? Repository { get; }
-
     protected Doador() { }
 
     public Doador(
@@ -19,12 +17,10 @@ public class Doador : Entity
         EGenero genero,
         double peso,
         ETipoSanguineo tipoSanguineo,
-        EFatorRh fatorRh,
+        EFatorRH fatorRH,
         Endereco? endereco)
     {
-        Repository = repository;
-
-        if (Repository.GetByEmailAsync(email).Result != Guid.Empty)
+        if (repository.GetByEmailAsync(email).Result != Guid.Empty)
             throw new DoadorEmailUtilizadoException();
 
         if (peso <= 50)
@@ -39,18 +35,17 @@ public class Doador : Entity
         Genero = genero;
         Peso = peso;
         TipoSanguineo = tipoSanguineo;
-        FatorRh = fatorRh;
+        FatorRH = fatorRH;
         Endereco = endereco;
     }
 
-    public string NomeCompleto { get; } = string.Empty;
-    public string Email { get; } = string.Empty;
-    public DateOnly DataNascimento { get; }
-    public EGenero Genero { get; }
-    public double Peso { get; }
-    public ETipoSanguineo TipoSanguineo { get; }
-    public EFatorRh FatorRh { get; }
-    public Guid? EnderecoId { get; }
-    public Endereco? Endereco { get; }
-    public List<Doacao>? Doacoes { get; }
+    public string NomeCompleto { get; private set; } = string.Empty;
+    public string Email { get; private set; } = string.Empty;
+    public DateOnly DataNascimento { get; private set; }
+    public EGenero Genero { get; private set; }
+    public double Peso { get; private set; }
+    public ETipoSanguineo TipoSanguineo { get; private set; }
+    public EFatorRH FatorRH { get; private set; }
+    public Endereco? Endereco { get; private set; }
+    public List<Doacao>? Doacoes { get; private set; }
 }

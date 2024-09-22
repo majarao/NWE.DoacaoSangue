@@ -23,9 +23,18 @@ public class DoadorRepository(IUnitOfWork unitOfWork) : IDoadorRepository
         return doador is null ? Guid.Empty : doador.Id;
     }
 
+    public async Task<Doador?> GetByIdComEnderecoAsync(Guid id) => 
+        await Repository.UnitOfWork.Context.Set<Doador>()
+            .Include(d => d.Endereco)
+            .SingleOrDefaultAsync(d => d.Id == id);
+
     public async Task<Doador> CreateAsync(Doador doador)
     {
         await Repository.CreateAsync(doador);
+
+        if (doador.Endereco is not null)
+            await Repository.UnitOfWork.Context.Set<Endereco>().AddAsync(doador.Endereco);
+
         await Repository.UnitOfWork.CommitAsync();
 
         return doador;

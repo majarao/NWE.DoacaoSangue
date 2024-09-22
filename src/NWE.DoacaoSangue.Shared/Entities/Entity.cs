@@ -2,5 +2,5 @@
 
 public class Entity
 {
-    public Guid Id { get; } = Guid.NewGuid();
+    public Guid Id { get; protected set; } = Guid.NewGuid();
 }

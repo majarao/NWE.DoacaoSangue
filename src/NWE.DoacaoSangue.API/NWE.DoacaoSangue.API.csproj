@@ -11,11 +11,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NWE.DoacaoSangue.Application\NWE.DoacaoSangue.Application.csproj" />
     <ProjectReference Include="..\NWE.DoacaoSangue.CrossCutting\NWE.DoacaoSangue.CrossCutting.csproj" />
-    <ProjectReference Include="..\NWE.DoacaoSangue.Infra\NWE.DoacaoSangue.Infra.csproj" />
   </ItemGroup>
 
 </Project>

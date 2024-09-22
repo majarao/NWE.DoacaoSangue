@@ -7,14 +7,14 @@ public class EstoqueSangue : Entity
 {
     protected EstoqueSangue() { }
 
-    public EstoqueSangue(ETipoSanguineo tipoSanguineo, EFatorRh fatorRh, int quantidadeML)
+    public EstoqueSangue(ETipoSanguineo tipoSanguineo, EFatorRH fatorRH, int quantidadeML)
     {
         TipoSanguineo = tipoSanguineo;
-        FatorRh = fatorRh;
+        FatorRH = fatorRH;
         QuantidadeML = quantidadeML;
     }
 
-    public ETipoSanguineo TipoSanguineo { get; }
-    public EFatorRh FatorRh { get; }
-    public int QuantidadeML { get; }
+    public ETipoSanguineo TipoSanguineo { get; private set; }
+    public EFatorRH FatorRH { get; private set; }
+    public int QuantidadeML { get; private set; }
 }
