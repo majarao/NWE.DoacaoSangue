@@ -1,4 +1,3 @@
-version: '3.4'
 name: doacaosangue_container
 services:
   nwe.doacaosangue.api:
@@ -14,7 +13,7 @@ services:
     hostname: 'sqlserver'
     environment:
       ACCEPT_EULA: 'Y'
-      SA_PASSWORD: "yourStrong(!)Password"
+      MSSQL_SA_PASSWORD: "yourStrong(!)Password"
     ports:
       - '1433:1433'    
     expose:
