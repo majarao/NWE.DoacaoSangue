@@ -2,7 +2,7 @@
 
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
+USER app
 WORKDIR /app
 EXPOSE 8080
 
@@ -11,15 +11,15 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/NWE.DoacaoSangue.API/NWE.DoacaoSangue.API.csproj", "src/NWE.DoacaoSangue.API/"]
-COPY ["src/NWE.DoacaoSangue.Application/NWE.DoacaoSangue.Application.csproj", "src/NWE.DoacaoSangue.Application/"]
-COPY ["src/NWE.DoacaoSangue.Infra/NWE.DoacaoSangue.Infra.csproj", "src/NWE.DoacaoSangue.Infra/"]
-COPY ["src/NWE.DoacaoSangue.Domain/NWE.DoacaoSangue.Domain.csproj", "src/NWE.DoacaoSangue.Domain/"]
-COPY ["src/NWE.DoacaoSangue.Shared/NWE.DoacaoSangue.Shared.csproj", "src/NWE.DoacaoSangue.Shared/"]
-COPY ["src/NWE.DoacaoSangue.CrossCutting/NWE.DoacaoSangue.CrossCutting.csproj", "src/NWE.DoacaoSangue.CrossCutting/"]
-RUN dotnet restore "./src/NWE.DoacaoSangue.API/NWE.DoacaoSangue.API.csproj"
+COPY ["NWE.DoacaoSangue.API/NWE.DoacaoSangue.API.csproj", "NWE.DoacaoSangue.API/"]
+COPY ["NWE.DoacaoSangue.CrossCutting/NWE.DoacaoSangue.CrossCutting.csproj", "NWE.DoacaoSangue.CrossCutting/"]
+COPY ["NWE.DoacaoSangue.Application/NWE.DoacaoSangue.Application.csproj", "NWE.DoacaoSangue.Application/"]
+COPY ["NWE.DoacaoSangue.Domain/NWE.DoacaoSangue.Domain.csproj", "NWE.DoacaoSangue.Domain/"]
+COPY ["NWE.DoacaoSangue.Shared/NWE.DoacaoSangue.Shared.csproj", "NWE.DoacaoSangue.Shared/"]
+COPY ["NWE.DoacaoSangue.Infra/NWE.DoacaoSangue.Infra.csproj", "NWE.DoacaoSangue.Infra/"]
+RUN dotnet restore "./NWE.DoacaoSangue.API/NWE.DoacaoSangue.API.csproj"
 COPY . .
-WORKDIR "/src/src/NWE.DoacaoSangue.API"
+WORKDIR "/src/NWE.DoacaoSangue.API"
 RUN dotnet build "./NWE.DoacaoSangue.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage

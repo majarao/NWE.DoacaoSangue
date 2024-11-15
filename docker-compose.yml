@@ -9,7 +9,7 @@ services:
       - sqlserver
   sqlserver:
     container_name: sqlserver
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mcr.microsoft.com/mssql/server
     hostname: 'sqlserver'
     environment:
       ACCEPT_EULA: 'Y'
