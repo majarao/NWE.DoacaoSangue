@@ -2,9 +2,9 @@
 
 namespace NWE.DoacaoSangue.Application.DoadorUseCases.Commands.NovoDoador;
 
-public class NovoDoadorValidator : AbstractValidator<NovoDoadorCommand>
+public class AtualizaDoadorValidator : AbstractValidator<NovoDoadorCommand>
 {
-    public NovoDoadorValidator()
+    public AtualizaDoadorValidator()
     {
         RuleFor(d => d.NomeCompleto)
             .NotEmpty().WithMessage("Necessário informar o nome completo")

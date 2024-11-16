@@ -13,19 +13,29 @@ public class DoadorRepository(IUnitOfWork unitOfWork) : IDoadorRepository
 
     public async Task<Doador?> GetByIdAsync(Guid id) => await Repository.GetByIdAsync(id);
 
-    public async Task<Guid> GetByEmailAsync(string email)
+    public bool EmailJaUsado(Guid id, string email)
     {
         if (string.IsNullOrWhiteSpace(email))
-            return Guid.Empty;
+            return false;
 
-        Doador? doador = await Repository.UnitOfWork.Context.Set<Doador>().FirstOrDefaultAsync(d => d.Email == email);
+        Doador? doador =
+            Repository.UnitOfWork.Context.Doadores
+                .AsNoTracking()
+                .FirstOrDefault(d => d.Email == email && d.Id != id);
 
-        return doador is null ? Guid.Empty : doador.Id;
+        return doador is not null;
     }
 
-    public async Task<Doador?> GetByIdComEnderecoAsync(Guid id) => 
-        await Repository.UnitOfWork.Context.Set<Doador>()
+    public async Task<Doador?> GetByIdComEnderecoAsync(Guid id) =>
+        await Repository.UnitOfWork.Context.Doadores
+            .AsNoTracking()
             .Include(d => d.Endereco)
+            .SingleOrDefaultAsync(d => d.Id == id);
+
+    public async Task<Doador?> RecuperaDoacoesAsync(Guid id) =>
+        await Repository.UnitOfWork.Context.Doadores
+            .AsNoTracking()
+            .Include(d => d.Doacoes)
             .SingleOrDefaultAsync(d => d.Id == id);
 
     public async Task<Doador> CreateAsync(Doador doador)
@@ -33,7 +43,7 @@ public class DoadorRepository(IUnitOfWork unitOfWork) : IDoadorRepository
         await Repository.CreateAsync(doador);
 
         if (doador.Endereco is not null)
-            await Repository.UnitOfWork.Context.Set<Endereco>().AddAsync(doador.Endereco);
+            await Repository.UnitOfWork.Context.Enderecos.AddAsync(doador.Endereco);
 
         await Repository.UnitOfWork.CommitAsync();
 
@@ -45,20 +55,18 @@ public class DoadorRepository(IUnitOfWork unitOfWork) : IDoadorRepository
         if (id == doador.Id)
         {
             Repository.Update(doador);
+
+            if (doador.Endereco is null)
+            {
+                Endereco? endereco = await Repository.UnitOfWork.Context.Enderecos.FirstOrDefaultAsync(e => e.DoadorId == id);
+
+                if (endereco != null)
+                    Repository.UnitOfWork.Context.Enderecos.Remove(endereco);
+            }
+
             await Repository.UnitOfWork.CommitAsync();
         }
 
         return doador;
-    }
-
-    public async Task<bool> RemoveAsync(Guid id)
-    {
-        Doador? doador = await Repository.GetByIdAsync(id);
-
-        if (doador == null)
-            return false;
-
-        Repository.Remove(doador);
-        return await Repository.UnitOfWork.CommitAsync() > 0;
     }
 }

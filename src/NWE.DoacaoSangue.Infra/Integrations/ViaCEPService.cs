@@ -1,13 +1,11 @@
 ﻿using NWE.DoacaoSangue.Shared.Integrations;
 using System.Net.Http.Json;
-using System.Text.Json;
 
 namespace NWE.DoacaoSangue.Infra.Integrations;
 
 public class ViaCEPService : ICEPService
 {
     public HttpClient Client { get; }
-    private JsonSerializerOptions Options { get; } = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
     public ViaCEPService(IHttpClientFactory client)
     {
@@ -19,6 +17,8 @@ public class ViaCEPService : ICEPService
     {
         ICEPService.ValidarCEP(cep);
 
-        return await Client.GetFromJsonAsync<CEPModel>($"/ws/{cep}/json/");
+        CEPModel? model = await Client.GetFromJsonAsync<CEPModel>($"/ws/{cep}/json/");
+
+        return model;
     }
 }

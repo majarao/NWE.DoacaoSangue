@@ -9,7 +9,6 @@ namespace NWE.DoacaoSangue.Domain.Tests;
 public class DoacaoTests
 {
     [Fact(DisplayName = "Sucesso")]
-    [Trait("Doacao", "Nova Doacao")]
     public void Doacao_NovaDoacao_Sucesso()
     {
         //Arrange
@@ -42,7 +41,6 @@ public class DoacaoTests
     }
 
     [Fact(DisplayName = "Falha Doador Nao Encontrado")]
-    [Trait("Doacao", "Nova Doacao")]
     public void Doacao_NovaDoacao_FalhaDoadorNaoEncontrado()
     {
         //Arrange
@@ -62,7 +60,6 @@ public class DoacaoTests
     }
 
     [Fact(DisplayName = "Falha Doador Menor Idade")]
-    [Trait("Doacao", "Nova Doacao")]
     public void Doacao_NovaDoacao_FalhaDoadorMenorIdade()
     {
         //Arrange
@@ -95,7 +92,6 @@ public class DoacaoTests
     }
 
     [Fact(DisplayName = "Falha Doador Intervalo Mulheres")]
-    [Trait("Doacao", "Nova Doacao")]
     public void Doacao_NovaDoacao_FalhaIntervaloMulheres()
     {
         //Arrange
@@ -117,7 +113,7 @@ public class DoacaoTests
 
         Doacao ultimaDoacao = new(repositoryDoador.Object, repositoryDoacao.Object, doador.Id, DateTime.Now.AddDays(-45), 450);
 
-        repositoryDoacao.Setup(s => s.RecuperaUltimaDoacaoDoDoador(doador.Id).Result).Returns(ultimaDoacao);
+        repositoryDoacao.Setup(s => s.RecuperaUltimaDoacaoDoDoadorAsync(doador.Id).Result).Returns(ultimaDoacao);
 
         //Act Assert
         Assert.Throws<DoacaoIntervaloParaMulheresException>(() =>
@@ -132,7 +128,6 @@ public class DoacaoTests
     }
 
     [Fact(DisplayName = "Falha Doador Intervalo Homens")]
-    [Trait("Doacao", "Nova Doacao")]
     public void Doacao_NovaDoacao_FalhaIntervaloHomens()
     {
         //Arrange
@@ -154,7 +149,7 @@ public class DoacaoTests
 
         Doacao ultimaDoacao = new(repositoryDoador.Object, repositoryDoacao.Object, doador.Id, DateTime.Now.AddDays(-45), 450);
 
-        repositoryDoacao.Setup(s => s.RecuperaUltimaDoacaoDoDoador(doador.Id).Result).Returns(ultimaDoacao);
+        repositoryDoacao.Setup(s => s.RecuperaUltimaDoacaoDoDoadorAsync(doador.Id).Result).Returns(ultimaDoacao);
 
         //Act Assert
         Assert.Throws<DoacaoIntervaloParaHomensException>(() =>
@@ -169,7 +164,6 @@ public class DoacaoTests
     }
 
     [Fact(DisplayName = "Falha Quantidade Nao Esperada")]
-    [Trait("Doacao", "Nova Doacao")]
     public void Doacao_NovaDoacao_FalhaQuantidadeNaoEsperada()
     {
         //Arrange

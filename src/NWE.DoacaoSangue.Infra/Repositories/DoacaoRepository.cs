@@ -13,8 +13,8 @@ public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
 
     public async Task<Doacao?> GetByIdAsync(Guid id) => await Repository.GetByIdAsync(id);
 
-    public async Task<Doacao?> RecuperaUltimaDoacaoDoDoador(Guid doadorId) =>
-        await Repository.UnitOfWork.Context.Set<Doacao>()
+    public async Task<Doacao?> RecuperaUltimaDoacaoDoDoadorAsync(Guid doadorId) =>
+        await Repository.UnitOfWork.Context.Doacoes
             .OrderBy(d => d.DataDoacao)
             .LastOrDefaultAsync(d => d.DoadorId == doadorId);
 
@@ -24,27 +24,5 @@ public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
         await Repository.UnitOfWork.CommitAsync();
 
         return doacao;
-    }
-
-    public async Task<Doacao> UpdateAsync(Guid id, Doacao doacao)
-    {
-        if (id == doacao.Id)
-        {
-            Repository.Update(doacao);
-            await Repository.UnitOfWork.CommitAsync();
-        }
-
-        return doacao;
-    }
-
-    public async Task<bool> RemoveAsync(Guid id)
-    {
-        Doacao? doacao = await Repository.GetByIdAsync(id);
-
-        if (doacao == null)
-            return false;
-
-        Repository.Remove(doacao);
-        return await Repository.UnitOfWork.CommitAsync() > 0;
     }
 }

@@ -22,7 +22,7 @@ public class Doacao : Entity
         if (DateTime.Now.Year - doador.DataNascimento.Year < 18)
             throw new DoacaoDoadorMenorIdadeException();
 
-        Doacao? ultimaDoacao = doacaoRepository.RecuperaUltimaDoacaoDoDoador(doadorId).Result;
+        Doacao? ultimaDoacao = doacaoRepository.RecuperaUltimaDoacaoDoDoadorAsync(doadorId).Result;
 
         if (ultimaDoacao is not null)
         {

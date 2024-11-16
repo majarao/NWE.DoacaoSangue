@@ -8,21 +8,19 @@ public sealed class GenericRepository<T>(IUnitOfWork unitOfWork) where T : Entit
 {
     public IUnitOfWork UnitOfWork { get; } = unitOfWork;
 
-    public async Task<List<T>?> GetAllAsync() => await UnitOfWork.Context.Set<T>().ToListAsync();
+    public async Task<List<T>?> GetAllAsync() => await UnitOfWork.Context.Set<T>().AsNoTracking().ToListAsync();
 
-    public async Task<T?> GetByIdAsync(Guid id) => await UnitOfWork.Context.Set<T>().SingleOrDefaultAsync(x => x.Id == id);
+    public async Task<T?> GetByIdAsync(Guid id) => await UnitOfWork.Context.Set<T>().AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
     public async Task<T> CreateAsync(T data)
     {
-        await UnitOfWork.Context.Set<T>().AddAsync(data);
+        await UnitOfWork.Context.AddAsync(data);
         return data;
     }
 
     public T Update(T data)
     {
-        UnitOfWork.Context.Set<T>().Update(data);
+        UnitOfWork.Context.Update(data);
         return data;
     }
-
-    public void Remove(T data) => UnitOfWork.Context.Set<T>().Remove(data);
 }

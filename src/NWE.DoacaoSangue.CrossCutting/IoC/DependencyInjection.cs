@@ -28,7 +28,6 @@ public static class DependencyInjection
 
         services.AddScoped<IDoacaoRepository, DoacaoRepository>();
         services.AddScoped<IDoadorRepository, DoadorRepository>();
-        services.AddScoped<IEstoqueSangueRepository, EstoqueSangueRepository>();
 
         return services;
     }

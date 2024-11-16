@@ -10,7 +10,6 @@ namespace NWE.DoacaoSangue.Domain.Tests;
 public class DoadorTests
 {
     [Fact(DisplayName = "Sucesso Sem Endereco")]
-    [Trait("Doador", "Novo Doador")]
     public void Doador_NovoDoadorSemEndereco_Sucesso()
     {
         //Arrange
@@ -30,10 +29,11 @@ public class DoadorTests
 
         //Assert
         Assert.True(doador is not null);
+        doador.Atualiza(repository.Object, "majarao@outlook.com", 95, null);
+        Assert.True(doador is not null);
     }
 
     [Fact(DisplayName = "Sucesso Com Endereco")]
-    [Trait("Doador", "Novo Doador")]
     public void Doador_NovoDoadorComEndereco_Sucesso()
     {
         //Arrange
@@ -41,7 +41,7 @@ public class DoadorTests
         Mock<ICEPService> cepService = new();
 
         cepService.Setup(s => s.RecuperarEnderecoPeloCEPAsync("14802-790").Result)
-            .Returns(new CEPModel()
+            .Returns(new CEPModel(null, null, null, null, null, null, null, null, null, null, null, null, null)
             {
                 Logradouro = "Avenida Gumercindo Siqueira",
                 Localidade = "Araraquara",
@@ -64,10 +64,11 @@ public class DoadorTests
 
         //Assert
         Assert.True(doador is not null);
+        doador.Atualiza(repository.Object, "majarao@outlook.com", 95, endereco);
+        Assert.True(doador is not null);
     }
 
     [Fact(DisplayName = "Falha Endereco Invalido")]
-    [Trait("Doador", "Novo Doador")]
     public void Doador_NovoDoadorComEndereco_FalhaCEPInvalido()
     {
         //Arrange
@@ -81,7 +82,6 @@ public class DoadorTests
     }
 
     [Fact(DisplayName = "Falha Endereco Nao Encontrado")]
-    [Trait("Doador", "Novo Doador")]
     public void Doador_NovoDoadorComEndereco_FalhaCEPNaoEncontrado()
     {
         //Arrange
@@ -95,24 +95,11 @@ public class DoadorTests
     }
 
     [Fact(DisplayName = "Falha Email Utilizado")]
-    [Trait("Doador", "Novo Doador")]
     public void Doador_NovoDoador_FalhaEmailUtilizado()
     {
         //Arrange
         Mock<IDoadorRepository> repository = new();
-
-        Doador doadorEmail = new(
-            repository.Object,
-            "Thiago Majarão Longo",
-            "majarao2@outlook.com",
-            new(1990, 4, 7),
-            EGenero.MASCULINO,
-            95,
-            ETipoSanguineo.A,
-            EFatorRH.POSITIVO,
-            null);
-
-        repository.Setup(s => s.GetByEmailAsync("majarao2@outlook.com").Result).Returns(doadorEmail.Id);
+        repository.Setup(s => s.EmailJaUsado(It.IsAny<Guid>(), It.IsAny<string>())).Returns(true);
 
         //Act Assert
         Assert.Throws<DoadorEmailUtilizadoException>(() =>
@@ -131,7 +118,6 @@ public class DoadorTests
     }
 
     [Fact(DisplayName = "Falha Peso Minimo")]
-    [Trait("Doador", "Novo Doador")]
     public void Doador_NovoDoador_FalhaPesoMinimo()
     {
         //Arrange
@@ -154,7 +140,6 @@ public class DoadorTests
     }
 
     [Fact(DisplayName = "Falha 16 Anos")]
-    [Trait("Doador", "Novo Doador")]
     public void Doador_NovoDoador_Falha16Anos()
     {
         //Arrange

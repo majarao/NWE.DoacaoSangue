@@ -4,7 +4,7 @@ using NWE.DoacaoSangue.Domain.Repositories;
 
 namespace NWE.DoacaoSangue.Application.DoadorUseCases.Querys.DoadorById;
 
-public class DoadorByIdQueryHandler(IDoadorRepository repository) : IRequestHandler<DoadorByIdQuery, DoadorByIdResult?>
+public class DoadorByIdHandler(IDoadorRepository repository) : IRequestHandler<DoadorByIdQuery, DoadorByIdResult?>
 {
     private IDoadorRepository Repository { get; } = repository;
 

@@ -5,7 +5,7 @@ using NWE.DoacaoSangue.Shared.Integrations;
 
 namespace NWE.DoacaoSangue.Application.DoadorUseCases.Commands.NovoDoador;
 
-public class NovoDoadorCommandHandler(IDoadorRepository repository, ICEPService cepService) : IRequestHandler<NovoDoadorCommand, NovoDoadorResult>
+public class NovoDoadorHandler(IDoadorRepository repository, ICEPService cepService) : IRequestHandler<NovoDoadorCommand, NovoDoadorResult>
 {
     private IDoadorRepository Repository { get; } = repository;
     private ICEPService CEPService { get; } = cepService;
@@ -23,9 +23,9 @@ public class NovoDoadorCommandHandler(IDoadorRepository repository, ICEPService 
             request.FatorRH,
             request.CEP is null ? null : new(CEPService, request.CEP));
 
-        await Repository.CreateAsync(doador);
+        doador = await Repository.CreateAsync(doador);
 
-        return new NovoDoadorResult(
+        NovoDoadorResult result = new(
             doador.Id,
             doador.NomeCompleto,
             doador.Email,
@@ -34,5 +34,7 @@ public class NovoDoadorCommandHandler(IDoadorRepository repository, ICEPService 
             doador.Peso,
             doador.TipoSanguineo,
             doador.FatorRH);
+
+        return result;
     }
 }

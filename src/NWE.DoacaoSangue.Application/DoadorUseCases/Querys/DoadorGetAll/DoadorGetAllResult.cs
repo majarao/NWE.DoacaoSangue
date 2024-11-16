@@ -1,8 +1,8 @@
 ﻿using NWE.DoacaoSangue.Domain.Enums;
 
-namespace NWE.DoacaoSangue.Application.DoadorUseCases.Querys.DoadorById;
+namespace NWE.DoacaoSangue.Application.DoadorUseCases.Querys.DoadorGetAll;
 
-public record DoadorByIdResult(
+public record DoadorGetAllResult(
     Guid Id,
     string NomeCompleto,
     string Email,

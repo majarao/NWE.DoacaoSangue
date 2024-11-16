@@ -20,15 +20,6 @@ public class Doador : Entity
         EFatorRH fatorRH,
         Endereco? endereco)
     {
-        if (repository.GetByEmailAsync(email).Result != Guid.Empty)
-            throw new DoadorEmailUtilizadoException();
-
-        if (peso <= 50)
-            throw new DoadorPesoMinimoException();
-
-        if (DateTime.Now.Year - dataNascimento.Year < 16)
-            throw new DoadorPrecisaTer16AnosException();
-
         NomeCompleto = nomeCompleto;
         Email = email;
         DataNascimento = dataNascimento;
@@ -37,6 +28,29 @@ public class Doador : Entity
         TipoSanguineo = tipoSanguineo;
         FatorRH = fatorRH;
         Endereco = endereco;
+
+        ValidaDoador(repository);
+    }
+
+    public void Atualiza(IDoadorRepository repository, string email, double peso, Endereco? endereco)
+    {
+        Email = email;
+        Peso = peso;
+        Endereco = endereco;
+
+        ValidaDoador(repository);
+    }
+
+    private void ValidaDoador(IDoadorRepository repository)
+    {
+        if (repository.EmailJaUsado(Id, Email))
+            throw new DoadorEmailUtilizadoException();
+
+        if (Peso <= 50)
+            throw new DoadorPesoMinimoException();
+
+        if (DateTime.Now.Year - DataNascimento.Year < 16)
+            throw new DoadorPrecisaTer16AnosException();
     }
 
     public string NomeCompleto { get; private set; } = string.Empty;

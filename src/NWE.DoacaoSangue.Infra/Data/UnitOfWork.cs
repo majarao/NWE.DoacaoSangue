@@ -4,5 +4,5 @@ public class UnitOfWork(DoacaoSangueContext context) : IUnitOfWork
 {
     public DoacaoSangueContext Context { get; set; } = context;
 
-    public Task<int> CommitAsync() => Context.SaveChangesAsync();
+    public async Task<int> CommitAsync() => await Context.SaveChangesAsync();
 }

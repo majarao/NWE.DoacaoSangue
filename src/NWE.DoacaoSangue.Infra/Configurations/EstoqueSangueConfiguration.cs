@@ -8,7 +8,7 @@ public class EstoqueSangueConfiguration : IEntityTypeConfiguration<EstoqueSangue
 {
     public void Configure(EntityTypeBuilder<EstoqueSangue> builder)
     {
-        builder.ToTable("EstoquesSangue");
+        builder.ToTable("DoacoesEstoque");
 
         builder.HasKey(e => e.Id);
 
