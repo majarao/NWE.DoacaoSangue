@@ -1,7 +1,6 @@
 ﻿using NWE.DoacaoSangue.Domain.Enums;
 using NWE.DoacaoSangue.Domain.Exceptions;
 using NWE.DoacaoSangue.Domain.Repositories;
-using NWE.DoacaoSangue.Shared.Entities;
 
 namespace NWE.DoacaoSangue.Domain.Entities;
 

@@ -15,6 +15,7 @@ COPY ["src/NWE.DoacaoSangue.API/NWE.DoacaoSangue.API.csproj", "src/NWE.DoacaoSan
 COPY ["src/NWE.DoacaoSangue.Application/NWE.DoacaoSangue.Application.csproj", "src/NWE.DoacaoSangue.Application/"]
 COPY ["src/NWE.DoacaoSangue.Infra/NWE.DoacaoSangue.Infra.csproj", "src/NWE.DoacaoSangue.Infra/"]
 COPY ["src/NWE.DoacaoSangue.Domain/NWE.DoacaoSangue.Domain.csproj", "src/NWE.DoacaoSangue.Domain/"]
+COPY ["src/NWE.DoacaoSangue.CrossCutting/NWE.DoacaoSangue.CrossCutting.csproj", "src/NWE.DoacaoSangue.CrossCutting/"]
 RUN dotnet restore "./src/NWE.DoacaoSangue.API/NWE.DoacaoSangue.API.csproj"
 COPY . .
 WORKDIR "/src/src/NWE.DoacaoSangue.API"

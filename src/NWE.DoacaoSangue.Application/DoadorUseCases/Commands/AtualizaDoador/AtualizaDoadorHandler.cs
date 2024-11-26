@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using NWE.DoacaoSangue.Domain.Entities;
+using NWE.DoacaoSangue.Domain.Integrations;
 using NWE.DoacaoSangue.Domain.Repositories;
-using NWE.DoacaoSangue.Shared.Integrations;
 
 namespace NWE.DoacaoSangue.Application.DoadorUseCases.Commands.AtualizaDoador;
 

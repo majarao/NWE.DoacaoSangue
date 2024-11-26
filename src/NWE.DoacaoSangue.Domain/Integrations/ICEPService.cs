@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace NWE.DoacaoSangue.Shared.Integrations;
+namespace NWE.DoacaoSangue.Domain.Integrations;
 
 public interface ICEPService
 {

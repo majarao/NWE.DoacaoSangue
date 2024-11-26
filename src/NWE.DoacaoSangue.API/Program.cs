@@ -1,5 +1,6 @@
 using NWE.DoacaoSangue.API.Middlewares;
-using NWE.DoacaoSangue.CrossCutting.IoC;
+using NWE.DoacaoSangue.Application;
+using NWE.DoacaoSangue.Infra;
 using System.Text.Json.Serialization;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -12,12 +13,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 
-
 builder.Services
-    .AddContext(builder.Configuration)
-    .AddInfra()
-    .AppAplication()
-    .AddIntegrations();
+    .AddInfra(builder.Configuration)
+    .AppAplication();
 
 WebApplication app = builder.Build();
 

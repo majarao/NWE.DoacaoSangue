@@ -1,11 +1,14 @@
 ﻿using MediatR;
 using NWE.DoacaoSangue.Domain.Entities;
+using NWE.DoacaoSangue.Domain.Events.DoadorEvents;
+using NWE.DoacaoSangue.Domain.Integrations;
 using NWE.DoacaoSangue.Domain.Repositories;
-using NWE.DoacaoSangue.Shared.Integrations;
 
 namespace NWE.DoacaoSangue.Application.DoadorUseCases.Commands.NovoDoador;
 
-public class NovoDoadorHandler(IDoadorRepository repository, ICEPService cepService) : IRequestHandler<NovoDoadorCommand, NovoDoadorResult>
+public class NovoDoadorHandler(IDoadorRepository repository, ICEPService cepService) :
+    IRequestHandler<NovoDoadorCommand, NovoDoadorResult>,
+    INotificationHandler<NovoDoadorEvent>
 {
     private IDoadorRepository Repository { get; } = repository;
     private ICEPService CEPService { get; } = cepService;
@@ -36,5 +39,11 @@ public class NovoDoadorHandler(IDoadorRepository repository, ICEPService cepServ
             doador.FatorRH);
 
         return result;
+    }
+
+    public async Task Handle(NovoDoadorEvent notification, CancellationToken cancellationToken)
+    {
+        Console.WriteLine($"Um novo doador foi cadastrado, diga olá para {notification.NomeCompleto}!");
+        await Task.CompletedTask;
     }
 }

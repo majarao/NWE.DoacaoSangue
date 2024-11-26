@@ -1,4 +1,4 @@
-﻿using NWE.DoacaoSangue.Shared.Integrations;
+﻿using NWE.DoacaoSangue.Domain.Integrations;
 using System.Net.Http.Json;
 
 namespace NWE.DoacaoSangue.Infra.Integrations;

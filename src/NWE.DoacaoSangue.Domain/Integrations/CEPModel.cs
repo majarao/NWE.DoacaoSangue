@@ -1,4 +1,4 @@
-﻿namespace NWE.DoacaoSangue.Shared.Integrations;
+﻿namespace NWE.DoacaoSangue.Domain.Integrations;
 
 public record CEPModel(
     string? CEP,

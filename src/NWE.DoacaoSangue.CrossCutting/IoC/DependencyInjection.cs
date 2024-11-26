@@ -3,11 +3,11 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NWE.DoacaoSangue.Domain.Integrations;
 using NWE.DoacaoSangue.Domain.Repositories;
 using NWE.DoacaoSangue.Infra.Data;
 using NWE.DoacaoSangue.Infra.Integrations;
 using NWE.DoacaoSangue.Infra.Repositories;
-using NWE.DoacaoSangue.Shared.Integrations;
 using System.Reflection;
 
 namespace NWE.DoacaoSangue.CrossCutting.IoC;

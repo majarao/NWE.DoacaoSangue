@@ -1,13 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using NWE.DoacaoSangue.Domain.Entities;
+using NWE.DoacaoSangue.Domain.Events.DoadorEvents;
 using NWE.DoacaoSangue.Domain.Repositories;
 using NWE.DoacaoSangue.Infra.Data;
 
 namespace NWE.DoacaoSangue.Infra.Repositories;
 
-public class DoadorRepository(IUnitOfWork unitOfWork) : IDoadorRepository
+public class DoadorRepository(IUnitOfWork unitOfWork, IMediator mediator) : IDoadorRepository
 {
     private GenericRepository<Doador> Repository { get; } = new(unitOfWork);
+    private IMediator Mediator { get; } = mediator;
 
     public async Task<List<Doador>?> GetAllAsync() => await Repository.GetAllAsync();
 
@@ -45,7 +48,8 @@ public class DoadorRepository(IUnitOfWork unitOfWork) : IDoadorRepository
         if (doador.Endereco is not null)
             await Repository.UnitOfWork.Context.Enderecos.AddAsync(doador.Endereco);
 
-        await Repository.UnitOfWork.CommitAsync();
+        if (await Repository.UnitOfWork.CommitAsync() > 0)
+            await Mediator.Publish(new NovoDoadorEvent(doador.NomeCompleto));
 
         return doador;
     }
@@ -60,7 +64,7 @@ public class DoadorRepository(IUnitOfWork unitOfWork) : IDoadorRepository
             {
                 Endereco? endereco = await Repository.UnitOfWork.Context.Enderecos.FirstOrDefaultAsync(e => e.DoadorId == id);
 
-                if (endereco != null)
+                if (endereco is not null)
                     Repository.UnitOfWork.Context.Enderecos.Remove(endereco);
             }
 
