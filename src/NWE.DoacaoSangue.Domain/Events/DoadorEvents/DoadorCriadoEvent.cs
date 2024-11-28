@@ -2,4 +2,4 @@
 
 namespace NWE.DoacaoSangue.Domain.Events.DoadorEvents;
 
-public record NovoDoadorEvent(string NomeCompleto) : INotification;
+public record DoadorCriadoEvent(string NomeCompleto) : INotification;

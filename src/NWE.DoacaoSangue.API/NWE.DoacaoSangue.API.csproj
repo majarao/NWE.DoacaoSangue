@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NWE.DoacaoSangue.Application\NWE.DoacaoSangue.Application.csproj" />
+    <ProjectReference Include="..\NWE.DoacaoSangue.Domain\NWE.DoacaoSangue.Domain.csproj" />
     <ProjectReference Include="..\NWE.DoacaoSangue.Infra\NWE.DoacaoSangue.Infra.csproj" />
   </ItemGroup>
 

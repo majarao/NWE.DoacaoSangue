@@ -48,8 +48,8 @@ public class DoadorRepository(IUnitOfWork unitOfWork, IMediator mediator) : IDoa
         if (doador.Endereco is not null)
             await Repository.UnitOfWork.Context.Enderecos.AddAsync(doador.Endereco);
 
-        if (await Repository.UnitOfWork.CommitAsync() > 0)
-            await Mediator.Publish(new NovoDoadorEvent(doador.NomeCompleto));
+        if (await Repository.CommitAsync() > 0)
+            await Mediator.Publish(new DoadorCriadoEvent(doador.NomeCompleto));
 
         return doador;
     }
@@ -68,7 +68,8 @@ public class DoadorRepository(IUnitOfWork unitOfWork, IMediator mediator) : IDoa
                     Repository.UnitOfWork.Context.Enderecos.Remove(endereco);
             }
 
-            await Repository.UnitOfWork.CommitAsync();
+            if (await Repository.CommitAsync() > 0)
+                await Mediator.Publish(new DoadorAtualizadoEvent(doador.Email));
         }
 
         return doador;

@@ -23,4 +23,6 @@ public sealed class GenericRepository<T>(IUnitOfWork unitOfWork) where T : Entit
         UnitOfWork.Context.Update(data);
         return data;
     }
+
+    public async Task<int> CommitAsync() => await UnitOfWork.CommitAsync();
 }
