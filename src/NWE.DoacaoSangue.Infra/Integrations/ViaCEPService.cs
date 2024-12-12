@@ -5,7 +5,7 @@ namespace NWE.DoacaoSangue.Infra.Integrations;
 
 public class ViaCEPService : ICEPService
 {
-    public HttpClient Client { get; }
+    private HttpClient Client { get; }
 
     public ViaCEPService(IHttpClientFactory client)
     {

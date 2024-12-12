@@ -4,7 +4,7 @@ using NWE.DoacaoSangue.Infra.Data;
 
 namespace NWE.DoacaoSangue.Infra.Repositories;
 
-public sealed class GenericRepository<T>(IUnitOfWork unitOfWork) where T : Entity
+internal sealed class GenericRepository<T>(IUnitOfWork unitOfWork) where T : Entity
 {
     public IUnitOfWork UnitOfWork { get; } = unitOfWork;
 

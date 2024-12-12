@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using NWE.DoacaoSangue.Application.DTOs;
+using NWE.DoacaoSangue.Application.Models;
 using NWE.DoacaoSangue.Domain.Entities;
 using NWE.DoacaoSangue.Domain.Repositories;
 
@@ -21,7 +21,7 @@ public class DoacoesDoDoadorHandler(IDoadorRepository repository) : IRequestHand
             doador.NomeCompleto,
             doador.TipoSanguineo,
             doador.FatorRH,
-            doador.Doacoes?.Select(d => new DoacaoDTO(d.DataDoacao, d.QuantidadeML)).ToList());
+            doador.Doacoes?.Select(d => new DoacaoModel(d.DataDoacao, d.QuantidadeML)).ToList());
 
         return result;
     }

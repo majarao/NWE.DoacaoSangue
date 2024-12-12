@@ -1,4 +1,4 @@
-﻿using NWE.DoacaoSangue.Application.DTOs;
+﻿using NWE.DoacaoSangue.Application.Models;
 using NWE.DoacaoSangue.Domain.Enums;
 
 namespace NWE.DoacaoSangue.Application.DoadorUseCases.Querys.DoadorByIdComEndereco;
@@ -12,4 +12,4 @@ public record DoadorByIdComEnderecoResult(
     double Peso,
     ETipoSanguineo TipoSanguineo,
     EFatorRH FatorRh,
-    EnderecoDTO? Endereco);
+    EnderecoModel? Endereco);

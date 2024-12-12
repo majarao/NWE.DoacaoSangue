@@ -30,15 +30,15 @@ public class Doacao : Entity
                 case EGenero.FEMININO:
                     if ((dataDoacao - ultimaDoacao.DataDoacao).Days < 90)
                         throw new DoacaoIntervaloParaMulheresException();
-                    return;
+                    break;
 
                 case EGenero.MASCULINO:
                     if ((dataDoacao - ultimaDoacao.DataDoacao).Days < 60)
                         throw new DoacaoIntervaloParaHomensException();
-                    return;
+                    break;
 
                 default:
-                    return;
+                    break;
             }
         }
 

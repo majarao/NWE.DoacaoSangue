@@ -2,11 +2,11 @@
 
 namespace NWE.DoacaoSangue.Domain.Entities;
 
-public class EstoqueSangue : Entity
+public class DoacaoEstoque : Entity
 {
-    protected EstoqueSangue() { }
+    protected DoacaoEstoque() { }
 
-    public EstoqueSangue(ETipoSanguineo tipoSanguineo, EFatorRH fatorRH, int quantidadeML)
+    public DoacaoEstoque(ETipoSanguineo tipoSanguineo, EFatorRH fatorRH, int quantidadeML)
     {
         TipoSanguineo = tipoSanguineo;
         FatorRH = fatorRH;

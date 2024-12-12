@@ -4,8 +4,6 @@ namespace NWE.DoacaoSangue.Domain.Repositories;
 
 public interface IDoacaoRepository
 {
-    public Task<List<Doacao>?> GetAllAsync();
-    public Task<Doacao?> GetByIdAsync(Guid id);
     public Task<Doacao?> RecuperaUltimaDoacaoDoDoadorAsync(Guid doadorId);
     public Task<Doacao> CreateAsync(Doacao doacao);
 }

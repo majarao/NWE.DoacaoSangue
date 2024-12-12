@@ -4,9 +4,9 @@ using NWE.DoacaoSangue.Domain.Entities;
 
 namespace NWE.DoacaoSangue.Infra.Configurations;
 
-public class EstoqueSangueConfiguration : IEntityTypeConfiguration<EstoqueSangue>
+public class DoacaoEstoqueConfiguration : IEntityTypeConfiguration<DoacaoEstoque>
 {
-    public void Configure(EntityTypeBuilder<EstoqueSangue> builder)
+    public void Configure(EntityTypeBuilder<DoacaoEstoque> builder)
     {
         builder.ToTable("DoacoesEstoque");
 

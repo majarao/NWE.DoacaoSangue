@@ -8,7 +8,7 @@ public class DoacaoSangueContext : DbContext
 {
     public DbSet<Doador> Doadores { get; set; } = null!;
     public DbSet<Doacao> Doacoes { get; set; } = null!;
-    public DbSet<EstoqueSangue> DoacoesEstoque { get; set; } = null!;
+    public DbSet<DoacaoEstoque> DoacoesEstoque { get; set; } = null!;
     public DbSet<Endereco> Enderecos { get; set; } = null!;
 
     public DoacaoSangueContext(DbContextOptions<DoacaoSangueContext> options) : base(options) =>

@@ -7,7 +7,7 @@ using NWE.DoacaoSangue.Infra.Data;
 
 namespace NWE.DoacaoSangue.Infra.Repositories;
 
-public class DoadorRepository(IUnitOfWork unitOfWork, IMediator mediator) : IDoadorRepository
+internal class DoadorRepository(IUnitOfWork unitOfWork, IMediator mediator) : IDoadorRepository
 {
     private GenericRepository<Doador> Repository { get; } = new(unitOfWork);
     private IMediator Mediator { get; } = mediator;

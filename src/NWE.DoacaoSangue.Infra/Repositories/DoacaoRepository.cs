@@ -5,13 +5,10 @@ using NWE.DoacaoSangue.Infra.Data;
 
 namespace NWE.DoacaoSangue.Infra.Repositories;
 
-public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
+internal class DoacaoRepository(IUnitOfWork unitOfWork, IDoadorRepository doadorRepository) : IDoacaoRepository
 {
     private GenericRepository<Doacao> Repository { get; } = new(unitOfWork);
-
-    public async Task<List<Doacao>?> GetAllAsync() => await Repository.GetAllAsync();
-
-    public async Task<Doacao?> GetByIdAsync(Guid id) => await Repository.GetByIdAsync(id);
+    private IDoadorRepository DoadorRepository { get; } = doadorRepository;
 
     public async Task<Doacao?> RecuperaUltimaDoacaoDoDoadorAsync(Guid doadorId) =>
         await Repository.UnitOfWork.Context.Doacoes
@@ -21,6 +18,12 @@ public class DoacaoRepository(IUnitOfWork unitOfWork) : IDoacaoRepository
     public async Task<Doacao> CreateAsync(Doacao doacao)
     {
         await Repository.CreateAsync(doacao);
+
+        Doador? doador = await DoadorRepository.GetByIdAsync(doacao.DoadorId);
+
+        DoacaoEstoque estoque = new(doador!.TipoSanguineo, doador.FatorRH, doacao.QuantidadeML);
+        await Repository.UnitOfWork.Context.DoacoesEstoque.AddAsync(estoque);
+
         await Repository.UnitOfWork.CommitAsync();
 
         return doacao;
