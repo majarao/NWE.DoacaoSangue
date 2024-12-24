@@ -1,5 +1,4 @@
 ﻿using NWE.DoacaoSangue.Application.Models;
-using NWE.DoacaoSangue.Domain.Enums;
 
 namespace NWE.DoacaoSangue.Application.DoadorUseCases.Querys.DoadorByIdComEndereco;
 
@@ -8,8 +7,8 @@ public record DoadorByIdComEnderecoResult(
     string NomeCompleto,
     string Email,
     DateOnly DataNascimento,
-    EGenero Genero,
+    string Genero,
     double Peso,
-    ETipoSanguineo TipoSanguineo,
-    EFatorRH FatorRh,
+    string TipoSanguineo,
+    string FatorRh,
     EnderecoModel? Endereco);

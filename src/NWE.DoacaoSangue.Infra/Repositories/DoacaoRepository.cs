@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NWE.DoacaoSangue.Domain.Entities;
+using NWE.DoacaoSangue.Domain.Enums;
+using NWE.DoacaoSangue.Domain.Models;
 using NWE.DoacaoSangue.Domain.Repositories;
 using NWE.DoacaoSangue.Infra.Data;
 
@@ -27,5 +29,36 @@ internal class DoacaoRepository(IUnitOfWork unitOfWork, IDoadorRepository doador
         await Repository.UnitOfWork.CommitAsync();
 
         return doacao;
+    }
+
+    public async Task<List<Estoque>> GetEstoqueAsync()
+    {
+        List<Estoque> estoques = [];
+
+        foreach (ETipoSanguineo tipo in Enum.GetValues<ETipoSanguineo>())
+        {
+            foreach (EFatorRH fator in Enum.GetValues<EFatorRH>())
+            {
+                Estoque estoque = new(
+                    tipo.ToString(),
+                    fator.ToString(),
+                    await Repository.UnitOfWork.Context.DoacoesEstoque
+                        .Where(e => e.TipoSanguineo == tipo && e.FatorRH == fator)
+                        .SumAsync(e => e.QuantidadeML));
+
+                estoques.Add(estoque);
+            }
+        }
+
+        return estoques;
+    }
+
+    public async Task<List<Estoque>> GetEstoqueMinimoAsync(int abaixoMinimo)
+    {
+        List<Estoque> estoques = await GetEstoqueAsync();
+
+        estoques = estoques.Where(e => e.Quantidade < abaixoMinimo).ToList();
+
+        return estoques;
     }
 }

@@ -19,8 +19,8 @@ public class DoacoesDoDoadorHandler(IDoadorRepository repository) : IRequestHand
         DoacoesDoDoadorResult? result = new(
             doador.Id,
             doador.NomeCompleto,
-            doador.TipoSanguineo,
-            doador.FatorRH,
+            doador.TipoSanguineo.ToString(),
+            doador.FatorRH.ToString(),
             doador.Doacoes?.Select(d => new DoacaoModel(d.DataDoacao, d.QuantidadeML)).ToList());
 
         return result;

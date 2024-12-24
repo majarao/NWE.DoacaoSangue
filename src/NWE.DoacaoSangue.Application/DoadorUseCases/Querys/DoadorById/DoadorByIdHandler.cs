@@ -18,10 +18,10 @@ public class DoadorByIdHandler(IDoadorRepository repository) : IRequestHandler<D
                 doador.NomeCompleto,
                 doador.Email,
                 doador.DataNascimento,
-                doador.Genero,
+                doador.Genero.ToString(),
                 doador.Peso,
-                doador.TipoSanguineo,
-                doador.FatorRH);
+                doador.TipoSanguineo.ToString(),
+                doador.FatorRH.ToString());
 
         return null;
     }

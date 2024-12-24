@@ -1,3 +1,4 @@
+using NWE.DoacaoSangue.API;
 using NWE.DoacaoSangue.API.Middlewares;
 using NWE.DoacaoSangue.Application;
 using NWE.DoacaoSangue.Domain;
@@ -17,7 +18,8 @@ builder.Services.AddHttpClient();
 builder.Services
     .AddDomain()
     .AddInfra(builder.Configuration)
-    .AddApplication();
+    .AddApplication()
+    .AddServicesAPI(builder.Configuration);
 
 WebApplication app = builder.Build();
 

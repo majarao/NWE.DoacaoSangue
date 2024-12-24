@@ -22,10 +22,10 @@ public class DoadorGetAllHandler(IDoadorRepository repository) : IRequestHandler
                     d.NomeCompleto,
                     d.Email,
                     d.DataNascimento,
-                    d.Genero,
+                    d.Genero.ToString(),
                     d.Peso,
-                    d.TipoSanguineo,
-                    d.FatorRH))
+                    d.TipoSanguineo.ToString(),
+                    d.FatorRH.ToString()))
             .ToList();
 
         return result;

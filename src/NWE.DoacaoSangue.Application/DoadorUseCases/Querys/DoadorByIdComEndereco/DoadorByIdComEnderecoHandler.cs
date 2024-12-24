@@ -18,10 +18,10 @@ public class DoadorByIdComEnderecoHandler(IDoadorRepository repository) : IReque
                 doador.NomeCompleto,
                 doador.Email,
                 doador.DataNascimento,
-                doador.Genero,
+                doador.Genero.ToString(),
                 doador.Peso,
-                doador.TipoSanguineo,
-                doador.FatorRH,
+                doador.TipoSanguineo.ToString(),
+                doador.FatorRH.ToString(),
                 doador.Endereco is null ? null : new(doador.Endereco.CEP, doador.Endereco.Logradouro, doador.Endereco.Cidade, doador.Endereco.Estado));
 
         return null;
